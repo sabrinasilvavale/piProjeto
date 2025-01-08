@@ -9,7 +9,7 @@ import models.Carro;
 import models.Checklist;
 import models.Condutor;
 import models.ExcluidoStatus;
-import models.Fiscalizador;
+import models.Fiscalizador; 
 import play.cache.Cache;
 import play.data.validation.Valid;
 import play.mvc.Controller;
