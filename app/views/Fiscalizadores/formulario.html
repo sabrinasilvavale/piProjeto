@@ -1,0 +1,39 @@
+#{extends 'main.html' /}
+#{set title:'Cadastro de Fiscalizadores' /}
+
+<form action="@{Fiscalizadores.salvar}" method="post">
+	
+	<h1><strong>Cadastro de Fiscalizador</strong></h1>
+
+	<strong>Nome:</strong>
+	</div><input class="form-control" type="text" placeholder="Nome completo" aria-label="input"
+		name="fiscalizadorObj.nomeFiscalizador">
+		<span>#{error 'fiscalizadorObj.nomeFiscalizador' /}</span>
+		
+	<strong>Login:</strong>
+	<input class="form-control" type="text" placeholder="Username" aria-label="input" name="fiscalizadorObj.login">
+	<span class='vermelho'>#{error 'fiscalizadorObj.login' /}</span>
+
+	<strong>Senha:</strong>
+	<input class="form-control" type="password" placeholder="Senha" aria-label="input" name="fiscalizadorObj.senha">
+	<span class='vermelho'>#{error 'fiscalizadorObj.senha' /}</span>
+	
+		
+	<strong>Email:</strong>
+	<input class="form-control" type="text" placeholder="exemplo@.com" aria-label="input"
+		name="fiscalizadorObj.emailFiscalizador">
+		<span class='vermelho'>#{error 'fiscalizadorObj.emailFiscalizador' /}</span>
+		
+	<strong>Contato:</strong>
+	<input class="form-control" type="text" placeholder="(555)9XXXX-YYYY" aria-label="input"
+		name="fiscalizadorObj.contatoFiscalizador">
+		<span class='vermelho'>#{error 'fiscalizadorObj.contatoFiscalizador' /}</span>
+		
+	<br>
+	<div class="mb-3">
+		<input type="submit" class="btn btn-success">
+		<href="@{Fiscalizadores.salvar}"></input>
+	</div>
+	
+	<a class="btn btn-secondary" href="@{Checklists.formulario}" class="btn btn-second">Voltar</a>
+</form>

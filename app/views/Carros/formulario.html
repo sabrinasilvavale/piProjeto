@@ -1,0 +1,28 @@
+#{extends 'main.html' /}
+#{set title:'Cadastro de Carros' /}
+
+<form action="@{Carros.salvar}" method="post">
+	
+	<h1><strong>Cadastro de carro</strong></h1>
+
+	<strong>Nome:</strong>
+	<input class="form-control" type="text" placeholder="Nome" aria-label="input" name="carroObj.nomeCarro">
+	<span class='vermelho'>#{error 'carroObj.nomeCarro' /}</span>
+
+	<strong>Placa:</strong>
+	<input class="form-control" type="text" placeholder="Placa" aria-label="input" name="carroObj.placaCarro">
+	<span class='vermelho'>#{error 'carroObj.placaCarro' /}</span>
+
+	<strong>Ano:</strong>
+	<input class="form-control" type="text" placeholder="Ano" aria-label="input" name="carroObj.anoCarro">
+	<span class='vermelho'>#{error 'carroObj.anoCarro' /}</span>
+
+	<br>
+	<div class="mb-3">
+		<input type="submit" class="btn btn-success">
+		<href="@{Carros.salvar}"></input>
+	</div>
+	
+	<a class="btn btn-secondary" href="@{Checklists.formulario}" class="btn btn-second">Voltar</a>
+
+</form>

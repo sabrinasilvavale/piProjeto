@@ -1,0 +1,130 @@
+#{extends 'main.html' /} #{set title: 'Cadastrar Vistoria' /}
+
+<form action="@{Checklists.salvar}" method="post">
+    <div class="form-group"></div>
+    <input type="hidden" name="checklistObj.id" value="${checklistEditarObj?.id}">
+    <div class="row">
+        <div class="col">
+
+           <input type="hidden" name="checklistObj.fiscalizadores.id"	value="${session.get("fiscalizador.id")}">
+			
+			<h1>${session.get("fiscalizador.nome")}</h1>
+            <label class="form-label"><strong> Fiscalizador</strong></label> 
+		
+        </div>
+        <div class="col">
+            <label class="form-label"><strong> Condutor</strong> </label> <select class="form-select" name="checklistObj.condutores.id">
+				#{list items:condutores, as:'cond'}
+				<option value="${cond.id}" ${cond.id==checklistEditarObj?.condutores?.id ? 'selected' : '' }>
+					${cond.nomeCondutor}</option>
+				#{/list}
+			</select>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <label class="form-label"><strong> Tipo da vistoria</strong>
+			</label> <select class="form-select" aria-label="Entrada/Saida" name="checklistObj.tipoChecklist">
+				<option selected></option>
+				<option value="SAIDA" ${checklistEditarObj?.tipoChecklist==models.TipoChecklist.SAIDA?'selected' : '' }>
+					Vistoria
+					de Saída</option>
+				<option value="CHEGADA" ${checklistEditarObj?.tipoChecklist==models.TipoChecklist.CHEGADA?'selected'
+					: '' }>Vistoria
+					de Chegada</option>
+			</select>
+        </div>
+
+
+        <div class="col">
+            <label class="form-label"><strong> Volante</strong> </label> /Funcional: <select class="form-select" aria-label="Funcionalidade" name="checklistObj.volante">
+				<option selected></option>
+				<option value="Sim" ${checklistEditarObj?.volante=="Sim" ? 'selected' : '' }>Sim</option>
+				<option value="Nao" ${checklistEditarObj?.volante=="Nao" ? 'selected' : '' }>Não</option>
+			</select>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col">
+            <label class="form-label"><strong> Buzina</strong> </label> /Funcional: <select class="form-select" aria-label="Funcionalidade" name="checklistObj.buzina">
+				<option selected></option>
+				<option value="Sim" ${checklistEditarObj?.buzina=="Sim" ? 'selected' : '' }>Sim</option>
+				<option value="Nao" ${checklistEditarObj?.buzina=="Nao" ? 'selected' : '' }>Não</option>
+			</select>
+        </div>
+
+        <div class="col">
+            <label class="form-label"><strong> Setas </strong> </label> /Funcional: <select class="form-select" aria-label="Funcionalidade" name="checklistObj.setas">
+				<option selected></option>
+				<option value="Sim" ${checklistEditarObj?.setas=="Sim" ? 'selected' : '' }>Sim</option>
+				<option value="Nao" ${checklistEditarObj?.setas=="Nao" ? 'selected' : '' }>Não</option>
+			</select>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <label class="form-label"> <strong>Marcha</strong></label> /Funcional: <select class="form-select" aria-label="Funcionalidade" name="checklistObj.marcha">
+				<option selected></option>
+				<option value="Sim" ${checklistEditarObj?.marcha=="Sim" ? 'selected' : '' }>Sim</option>
+				<option value="Nao" ${checklistEditarObj?.marcha=="Nao" ? 'selected' : '' }>Não</option>
+			</select>
+        </div>
+        <div class="col">
+            <label class="form-label"> <strong>Embreagem </strong></label> /Funcional: <select class="form-select" aria-label="Funcionalidade" name="checklistObj.embreagem">
+				<option selected></option>
+				<option value="Sim" ${checklistEditarObj?.embreagem=="Sim" ? 'selected' : '' }>Sim</option>
+				<option value="Nao" ${checklistEditarObj?.embreagem=="Nao" ? 'selected' : '' }>Não</option>
+			</select>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <label class="form-label"> <strong>Freios </strong></label> /Funcional: 
+            <select class="form-select" aria-label="Funcionalidade" name="checklistObj.freios">
+				<option selected></option>
+				<option value="Sim" ${checklistEditarObj?.freios=="Sim" ? 'selected' : '' }>Sim</option>
+				<option value="Nao" ${checklistEditarObj?.freios=="Nao" ? 'selected' : '' }>Não</option>
+			</select>
+        </div>
+
+        <div class="col">
+            <label class="form-label"> <strong>Acelerador</strong></label> /Funcional:
+            <select class="form-select" aria-label="Funcionalidade" name="checklistObj.acelerador">
+				<option selected></option>
+				<option value= "Sim" ${checklistEditarObj?.acelerador=="Sim" ? 'selected' : '' }>Sim</option>
+				<option value= "Nao" ${checklistEditarObj?.acelerador=="Nao" ? 'selected' : '' }>Não</option>
+			</select>
+		</div>
+	</div>
+
+	<div class="mb-3 ">
+		<label class="form-label "><strong> Data: </strong></label>
+		<input type="date" name="checklistObj.dataChecklist" class="form-control"
+			value = "${checklistEditarObj?.dataChecklist}" />
+		
+		
+	</div>
+	<div class="mb-3 ">
+		<label class="form-label"> <strong> Selecione o carro: </strong></label> 
+		<select class="form-select" name="checklistObj.carro.id"> 
+			#{list items:carros, as:'c'}
+			<option value="${c.id}" ${c.id==checklistEditarObj?.carro?.id? 'selected' : '' }>${c.nomeCarro}</option>
+			#{/list}
+		</select>
+	</div>
+
+	<input class="btn btn-success " type="submit" value="${checklistEditarObj ? 'Atualizar' : 'Cadastrar'} ">
+
+
+	#{if checklistEditarObj == null} <a class="btn btn-success " href="@{Checklists.listagem} ">Listagem</a> #{/if} #{if
+	checklistEditarObj != null} <a class="btn btn-success " href="@{Checklists.listagem} ">Voltar</a> #{/if}
+	
+	<a class="btn btn-secondary " href="@{Fiscalizadores.formulario} " class="btn btn-second ">Cadastrar novo fiscalizador</a>
+	<a class="btn btn-secondary " href="@{Condutores.formulario} " class="btn btn-second ">Cadastrar novo condutor</a>
+	<a class="btn btn-secondary " href="@{Carros.formulario} " class="btn btn-second ">Cadastrar novo carro </a>
+</form>

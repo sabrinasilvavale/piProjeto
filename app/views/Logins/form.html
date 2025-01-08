@@ -1,0 +1,24 @@
+#{extends 'main.html' /}
+
+<p>Login</p>
+
+<form action="@{logins.logar}">
+
+	<div class="mb-3 row">
+		<label for="inputUsername" class="col-sm-0 col-form-label"><strong>Login:</strong></label>
+		<div class="col-sm-5">
+			<input type="text" class="form-control" id="inputUsername" name="username">
+		</div>
+	</div>
+	
+	<div class="mb-3 row">
+		<label for="inputPassword" class="col-sm-0 col-form-label"><strong>Senha:</strong></label>
+		<div class="col-sm-5">
+			<input type="password" class="form-control" id="inputPassword" name="senha">
+		</div>
+	</div>
+	<div class="mb-3">
+		<input type="submit" class="btn btn-success"></input>
+		</div>
+		
+</form>

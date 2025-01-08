@@ -1,0 +1,83 @@
+#{extends 'main.html' /}
+#{set title:'Listagem de Vistorias' /}
+
+
+
+<h1>Pesquisar :)</h1>
+
+<form action= "@{Checklists.listagem(termo)}">
+
+
+		<div class="row">
+			<div class="col">
+		<input type="text" class="form-control"  name="termo" value="${termo}" />
+		</div>
+	<div class="col">
+		<input type="submit" class="btn btn-success" name="buscar" value="Pesquisar">
+		</div>
+	</div>
+	
+	</form>
+
+	<!--Tratamento de valor que chega do banco para mostrar ao usuario-->
+	
+	<table class="table">
+		<thead>
+			<tr>
+				
+				
+				<th>Tipo</th></br>
+				<th scope="col">Fiscalizador</th>
+				<th scope="col">Condutor</th>
+				<th scope="col">Data</th>
+				<th scope="col">Volante</th>
+				<th scope="col">Setas</th>
+				<th scope="col">Marchas</th>
+				<th scope="col">Carro</th>
+				<th scope="col">Embreagem</th>
+				<th scope="col">Freios</th>
+				<th scope="col">Acelerador</th>
+				<th scope="col">Buzina</th>
+				<th scope="col">Ações</th>
+				
+			</tr>
+		</thead>
+		<tbody>
+			#{list items: checkListObj, as: 'cList'}
+				<tr>
+					<td>
+										<!--Aqui o IF verifica se o valor que esta vindo no objeto é SAIDA, caso for, ele "entra no IF" e escreve vistoria de saida na tela de listagem-->
+						#{if cList.tipoChecklist == models.TipoChecklist.SAIDA}
+						Vistoria de Saida
+						#{/if}
+
+						<!--Aqui o IF verifica se o valor que esta vindo no objeto é CHEGADA, caso for, ele "entra no IF" e escreve vistoria de Chegada na tela de listagem-->
+						#{if cList.tipoChecklist == models.TipoChecklist.CHEGADA}
+						Vistoria de Chegada
+						#{/if}
+					</td>
+					<td>${cList.fiscalizadores.nomeFiscalizador} </td>
+					<td>${cList.condutores.nomeCondutor}</td>
+					<td>${cList.dataChecklist.format('yyyy-MM-dd')}</td> 
+					<td>${cList.volante}</td> 
+					<td>${cList.setas}</td>
+					<td>${cList.marcha}</td>
+					<td>${cList.carro.nomeCarro}</td>
+					<td>${cList.embreagem}</td>
+					<td>${cList.freios} </td> 
+					<td>${cList.acelerador} </td>
+					<td>${cList.buzina} </td>
+					
+				<td><a href="@{Checklists.remover(cList.id)}" class="btn btn-danger">Remover</a>
+	<a href="@{Checklists.editar(cList.id)}" class="btn btn-warning">Editar</a></td>
+				</tr>
+			#{/list} 
+		</tbody>
+	</table>
+		
+
+
+	<a class="btn btn-secondary" href="@{Checklists.Formulario}" class="btn btn-second">Realizar outra vistoria</a>
+
+
+	
